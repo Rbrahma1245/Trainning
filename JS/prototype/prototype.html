@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let car = {
+        name: "swift",
+        city : function(){
+        console.log(`car name is ${this.name}`)   
+        }  
+        }
+
+        // car
+
+        let vehicle = Object.create(car)
+        // vehicle
+
+        let person = {}
+        Object.setPrototypeOf(person, car)
+        person.city()
+
+    </script>
+</body>
+</html>

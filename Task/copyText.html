@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="list"></div>
+    <input id="text" type="text" name="text" />
+    <button onclick="handleAdd()">ADD</button>
+    <br />
+    <br />
+    <button onclick="copyToClipboard()">Copy Clipboard</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script>
+      let list = document.getElementById("list");
+      let ul = document.createElement("ul");
+
+      function handleAdd() {
+        let text = document.getElementById("text");
+        let li = document.createElement("li");
+        li.innerText = text.value;
+
+        if (text.value == "") {
+          alert("Insert Item list");
+        } else {
+          ul.appendChild(li);
+          list.appendChild(ul);
+
+          text.value = "";
+        }
+      }
+
+      function copyToClipboard() {
+        if (ul.innerText == "") {
+          Swal.fire({
+            title: "Error",
+            text: "No Item to copy",
+            icon: "error",
+          });
+        } else {
+          navigator.clipboard.writeText(ul.innerText);
+          Swal.fire({
+            title: "Correct",
+            text: "You have successfully copied the text",
+            icon: "success",
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

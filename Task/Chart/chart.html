@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- SASS -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <p class="my-paragraph">asfvasvasvavaz</p>
+    <div style="display: flex;">
+      <div class="container">
+        <canvas id="pie"></canvas>
+      </div>
+      <div class="" style="width: 500px; height: 500px">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const pie = document.getElementById("pie");
+      const new1 = document.getElementById("myChart");
+
+      new Chart(pie, {
+        type: "pie",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      //DOUGHNUT
+
+      new Chart(new1, {
+        type: "doughnut",
+        data: {
+          labels: ["Red", "Blue", "Yellow"],
+          datasets: [
+            {
+              label: "My First Dataset",
+              data: [300, 50, 100],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+              ],
+              borderWidth: 1,
+              hoverOffset: 4,
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

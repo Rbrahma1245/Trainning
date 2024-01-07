@@ -1,0 +1,23 @@
+// styles.scss
+
+$primary-color: #8a124a;
+$secondary-color: rgb(241, 234, 234);
+
+
+$background-color: #654FC6;
+$background-color-hover: #24136f;
+
+
+.my-paragraph {
+  color: $primary-color;
+  font-size: 16px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container{
+    width: 500px;
+    height: 500px;
+}

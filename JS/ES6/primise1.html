@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let promise = new Promise(function (resolve, reject) {
+        let randomVal = Math.random() * 10;
+
+        if (randomVal > 5) {
+          resolve(`The value ${randomVal} is greater than 5`);
+        } else {
+          reject(`The value ${randomVal} is less than 5`);
+        }
+      });
+
+      promise
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    </script>
+  </body>
+</html>

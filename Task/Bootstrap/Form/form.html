@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form" onsubmit="handleSubmit(event)">
+      <input type="text" name="fName" placeholder="Enter first Name" />
+      <input type="text" name="lName" placeholder="Enter Last Name" />
+      <input type="submit" value="SUBMIT" />
+    </form>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        try {
+          let form = document.getElementById("form");
+          let fName = event.target.fName.value;
+          let lName = event.target.lName.value;
+
+          let pattern = /\d/;
+
+          let checkFName = pattern.test(fName);
+          let checkLName = pattern.test(lName);
+
+          console.log(checkLName, checkFName);
+          if (fName.length > 3 || lName.length > 3) {
+            if (!checkFName || !checkLName) {
+              alert("VALID INPUT");
+            } else {
+              throw new Error("Name cannot contain digit");
+            }
+          } else {
+            throw new Error("Name should contain 3 character");
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+    </script>
+  </body>
+</html>

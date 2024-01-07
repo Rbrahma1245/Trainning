@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm" onsubmit="validateForm(event)">
+      <label for="fName">First Name:</label>
+      <input type="text" name="fName" />
+      <span id="fNameError" class="error-message"></span>
+      <br />
+
+      <label for="lName">Last Name:</label>
+      <input type="text" name="lName" />
+      <span id="lNameError" class="error-message"></span>
+      <br />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob" />
+      <span id="dobError" class="error-message"></span>
+      <br />
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" />
+      <span id="emailError" class="error-message"></span>
+      <br />
+
+      <label for="textarea">Address:</label>
+      <textarea name="address"></textarea>
+      <span id="addressError" class="error-message"></span>
+      <br />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" />
+      <span id="passwordError" class="error-message"></span>
+      <br />
+
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="div"></div>
+
+    <script>
+      function validateField(value, fieldName, minLength = 0, allowNumber = false) {
+        if (value === "") {
+          return `${fieldName} is required`;
+        } else if (!allowNumber && /\d/.test(value)) {
+          return `${fieldName} should only contain characters`;
+        } else if (value.length < minLength) {
+          return `${fieldName} should be at least ${minLength} characters long`;
+        }
+        return null;
+      }
+
+      function validateForm(e) {
+        e.preventDefault();
+
+        try {
+          let fName = event.target.fName.value;
+          let lName = event.target.lName.value;
+          let dob = event.target.dob.value;
+          let email = event.target.email.value;
+          let address = event.target.address.value;
+          let password = event.target.password.value;
+
+          // Validate each field
+          let fNameError = validateField(fName, "First Name");
+          let lNameError = validateField(lName, "Last Name");
+          let emailError = validateField(email, "Email", 0, true);
+          let dobError = validateField(dob, "DOB", 0, true);
+          let addressError = validateField(address, "Address", 20, true);
+          let passwordError = validateField(password, "Password", 8, true);
+
+          let div = document.getElementById("div");
+
+          if ( fNameError || lNameError || emailError || dobError || addressError || passwordError ) {
+            document.getElementById("fNameError").innerText = fNameError || ""; 
+            document.getElementById("lNameError").innerText = lNameError || "";
+            document.getElementById("emailError").innerText = emailError || "";
+            document.getElementById("dobError").innerText = dobError || "";
+            document.getElementById("addressError").innerText = addressError || "";
+            document.getElementById("passwordError").innerText =passwordError || "";
+          } else {
+            div.innerHTML = `
+                <p><b>First Name:</b> ${fName}</p>
+                <p><b>Last Name:</b> ${lName}</p>
+                <p><b>DOB:</b> ${dob}</p>
+                <p><b>Email:</b> ${email}</p>
+                <p><b>Address:</b> ${address}</p>
+                <p><b>Password:</b> ${password}</p>
+            `;
+
+            // document.getElementById("fNameError").innerText =  ""
+            // document.getElementById("lNameError").innerText =  ""
+            // document.getElementById("emailError").innerText =  ""
+            // document.getElementById("addressError").innerText =  ""
+            // document.getElementById("passwordError").innerText = ""
+          }
+        } catch (error) {
+          console.error("An error occurred during form validation:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

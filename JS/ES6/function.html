@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Higher order function
+      // 1)) FUNCTION PASSING ANOTHER FUNCTION AS AN ARGUMENT
+
+      // function operation(num1, num2, func){
+      //     return func(num1,num2)
+      // }
+
+      // function add(a,b){
+      //     return a+b
+      // }
+      // function mul(a,b){
+      //     return a*b
+      // }
+
+      // console.log(operation(10,20, add))
+
+      // 2)) FUNCTION RETURNING ANOTHER FUNCTION
+      //1st way
+
+      function operation(num1, num2) {
+        return function (a) {
+          return num1 + num2 + a;
+        };
+      }
+      // console.log(operation(10,20)(30))
+
+      //2nd way store in new variable and pass value for the return function
+      let add = operation(10, 20);
+      console.log(add(30));
+    </script>
+  </body>
+</html>

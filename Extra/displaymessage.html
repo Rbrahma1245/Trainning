@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .green{
+            color:green
+        }
+        .highlight {
+            background-color: yellow;
+        }
+              
+    </style>
+</head>
+<body>
+
+    <!-- <form onsubmit="handleSubmitForm(event)" method="post" action="">
+        <input type="number" name="number" onchange="handleChange(event)">  
+        <input type="submit" value="Submit">
+
+        <p class="message"></p>
+    </form> -->
+
+    <input id="num" type="number" name="number" >
+    <input type="button" value="Submit" onclick="handleSubmitForm(event)">
+    <p class="message "></p>
+  
+    <script>
+        let num;
+        let message = document.getElementsByClassName("message")[0]
+    
+        // function handleChange(e){
+        //     num = e.target.value
+        // }
+
+       function handleSubmitForm(e){
+        e.preventDefault()
+        let num = document.getElementById("num").value
+
+        if(num>0 && num <100){
+            message.innerText = "Valid input"
+            // if(message.classList.contains("red")){
+            //     message.classList.remove("red")
+            // }
+            // message.classList.add("green")
+            message.style.color="green"
+
+        }else{
+            message.innerText = "Invalid input" 
+            if(message.classList.contains("green")){
+                message.classList.remove("green")
+            }
+            message.classList.add("red")
+        }
+       }
+
+       
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- FONT AWESOME -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- SASS -->
+    <link rel="stylesheet" href="./styles.css" />
+
+    <style>
+ 
+    </style>
+  </head>
+  <body>
+    <div class="d-flex">
+      <div id="images" class="mx-3 d-flex flex-column"></div>
+      <div id="addImg" class="border border-primary w-50 mx-3 text-center">
+        <div class="d-flex border-bottom border-primary">
+          <h4 class="w-50">Layers</h4>
+          <span id="count"></span>
+        </div>
+      </div>
+    </div>
+    <div class="mb-5 mt-5" id="uploadForm">
+      <input
+        type="file"
+        id="fileInput"
+        accept=".png"
+        onchange="validateFile()"
+      />
+      <p id="error-message"></p>
+    </div>
+    <div class="mt-5 mb-5">
+      <button class="btn btn-outline-danger" onclick="handleReset()">
+        Reset
+      </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+      let imageUrl = [
+        { name: "Straight Line", url: "./Images/straightLine.png" },
+        { name: "Arrow", url: "./Images/arrow.png" },
+        { name: "Bookmark", url: "./Images/bookmark.png" },
+        { name: "Chart Line", url: "./Images/chartLine.png" },
+        { name: "Circle", url: "./Images/circle.png" },
+        { name: "Comment", url: "./Images/comment.png" },
+        { name: "Hexagon", url: "./Images/hexagon.png" },
+        { name: "Octagon", url: "./Images/octagon.png" },
+        { name: "Rectangle", url: "./Images/rectangle.png" },
+        { name: "Square", url: "./Images/square.png" },
+        { name: "Star", url: "./Images/star.png" },
+        { name: "triangle", url: "./Images/triangle.png" },
+      ];
+
+      function setImgAttribute(img, name, url) {
+        img.setAttribute("alt", name);
+        img.setAttribute("src", url);
+      }
+
+      //DRAG AND DROP FUNCTION
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+      }
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+      function drop(event) {
+        event.preventDefault();
+        let data = event.dataTransfer.getData("text");
+        let draggedElement = document.getElementById(data);
+        let dropTarget = event.target;
+
+        console.log(dropTarget.classList.contains("add"));
+        if (dropTarget.classList.contains("add")) {
+       
+          let temp = dropTarget.innerHTML;
+          dropTarget.innerHTML = draggedElement.innerHTML;
+          draggedElement.innerHTML = temp;
+        }
+      }
+
+      let images = document.getElementById("images");
+
+      imageUrl.forEach((e, i) => {
+        let img = document.createElement("img");
+        setImgAttribute(img, e.name, e.url);
+        images.appendChild(img);
+      });
+
+      let countVal = 0;
+      let container = document.createElement("div");
+
+      images.addEventListener("click", function (e) {
+        let addImg = document.getElementById("addImg");
+        let count = document.getElementById("count");
+
+        console.log(e.target);
+
+        count.innerText = `Total Images : ${++countVal}`;
+
+        let uniqueId = Math.random().toString(16).slice(2);
+
+        let div = document.createElement("div");
+
+        let leftDiv = document.createElement("div");
+        div.classList.add("add");
+        div.setAttribute("id", uniqueId);
+
+        let img = document.createElement("img");
+
+        setImgAttribute(img, e.target.alt, e.target.src);
+        img.classList.add("displayImg");
+        leftDiv.appendChild(img);
+
+        let span = document.createElement("span");
+        span.classList.add("spanText");
+        span.innerText = e.target.alt;
+        leftDiv.appendChild(span);
+
+        div.appendChild(leftDiv);
+        container.appendChild(div);
+
+        // DRAG AND DROP OPEARTION
+
+        div.setAttribute("draggable", "true");
+        div.setAttribute("ondragstart", " drag(event)");
+
+        addImg.addEventListener("drop", drop);
+        addImg.addEventListener("dragover", allowDrop);
+
+        //Add delete and download button
+
+        let trashIcon = document.createElement("i");
+        let downloadIcon = document.createElement("i");
+
+        let iconDiv = document.createElement("div");
+        iconDiv.classList.add("iconDiv");
+
+        // Set class attribute
+
+        downloadIcon.className = "fa-solid fa-download";
+        trashIcon.className = "fa-solid fa-trash-can";
+
+        iconDiv.appendChild(downloadIcon);
+        iconDiv.appendChild(trashIcon);
+        div.appendChild(iconDiv);
+
+        container.appendChild(div);
+
+        // Delete Functionality
+        trashIcon.addEventListener("click", function (e) {
+          if (div.id) {
+            div.remove();
+            count.innerText = `Total Images : ${--countVal}`;
+          }
+        });
+
+        // Download Functionality
+        downloadIcon.addEventListener("click", function (e) {
+          if (div.id) {
+            let imgElement = div.querySelector("img");
+            let downloadLink = document.createElement("a");
+
+            downloadLink.download = imgElement.alt;
+            downloadLink.href = imgElement.src;
+
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+          }
+        });
+
+        addImg.appendChild(div);
+      });
+
+      function removeExtension(filename) {
+        return filename.substring(0, filename.lastIndexOf(".")) || filename;
+      }
+
+      //UPLOAD FILE FUNCTIONALITY
+
+      function validateFile() {
+        let fileInput = document.getElementById("fileInput");
+        let errorMessage = document.getElementById("error-message");
+
+        // If no error set empty
+        errorMessage.innerText = "";
+
+        // Check if a file is selected
+        if (fileInput.files.length === 0) {
+          errorMessage.innerText = "Please select a file.";
+          return;
+        }
+
+        let selectedFile = fileInput.files[0];
+
+        // Here we check if the file is PNG or not
+        if (!selectedFile.type.includes("image/png")) {
+          errorMessage.innerText = "Please select a PNG file.";
+          fileInput.value = "";
+          return;
+        }
+
+        let img = document.createElement("img");
+        let uniqueId = Math.random().toString(16).slice(2);
+
+        let name = removeExtension(selectedFile.name);
+        setImgAttribute(img, name);
+        img.setAttribute("id", uniqueId);
+        images.appendChild(img);
+
+        //Display image if the image is png
+        reader = new FileReader();
+        reader.onload = function (e) {
+          img.setAttribute("src", e.target.result);
+        };
+
+        reader.readAsDataURL(fileInput.files[0]);
+
+        console.log("Selected file:", selectedFile);
+        fileInput.value = "";
+      }
+
+      //RESET FUNCTIONALITY
+      function handleReset() {
+        let addImg = document.getElementById("addImg");
+        let images = document.getElementById("images");
+
+        let elementList = Array.from(addImg.children);
+        let imageList = Array.from(images.children);
+
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            elementList.forEach((e, i) => {
+              if (e.id) {
+                e.remove();
+                countVal = 0;
+                count.innerText = `Total Images : ${countVal}`;
+              }
+            });
+            imageList.forEach((e, i) => {
+              if (e.id) {
+                e.remove();
+              }
+            });
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

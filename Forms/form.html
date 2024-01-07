@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm" onsubmit="validateForm(event)">
+      <label for="fName">First Name:</label>
+      <input type="text" name="fName" />
+      <span id="fNameError" class="error-message"></span>
+      <br />
+
+      <label for="lName">Last Name:</label>
+      <input type="text" name="lName" />
+      <span id="lNameError" class="error-message"></span>
+      <br />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob" />
+      <span id="dobError" class="error-message"></span>
+      <br />
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" />
+      <span id="emailError" class="error-message"></span>
+      <br />
+
+      <label for="textarea">Address:</label>
+      <textarea name="address"></textarea>
+      <span id="addressError" class="error-message"></span>
+      <br />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" />
+      <span id="passwordError" class="error-message"></span>
+      <br />
+
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="display"></div>
+
+    <script>
+      function validateForm(event) {
+        event.preventDefault();
+       
+        let fName = event.target.fName.value;
+        let lName = event.target.lName.value;
+        let dob = event.target.dob.value;
+        let email = event.target.email.value;
+        let address = event.target.address.value;
+        let password = event.target.password.value;
+
+        let div = document.getElementById("display");
+        let br = document.createElement("br")
+
+     
+        document.getElementById("fNameError").innerHTML = "";
+        document.getElementById("lNameError").innerHTML = "";
+        document.getElementById("emailError").innerHTML = "";
+        document.getElementById("addressError").innerHTML = "";
+        document.getElementById("passwordError").innerHTML = "";
+
+        document.getElementById("display").innerHTML = "";
+
+
+
+        if (fName === "") {
+          document.getElementById("fNameError").innerHTML = "First name is required";
+        } else if (/\d/.test(fName)) {
+          document.getElementById("fNameError").innerHTML = "First name should only contain characters";
+        }else{
+            div.appendChild(document.createTextNode(`First Name : ${fName} `));
+            div.appendChild(br)
+        }
+
+
+        if (lName === "") {
+          document.getElementById("lNameError").innerHTML = "Last name is required";
+        } else if (/\d/.test(lName)) {
+
+          document.getElementById("lNameError").innerHTML ="Last name should only contain characters";
+        }else{
+            div.appendChild(document.createTextNode(` Last Name : ${lName} `));
+        }
+
+
+        if (email === "") {
+          document.getElementById("emailError").innerHTML = "Email is required";
+        }else{
+            div.appendChild(document.createTextNode(` Email: ${email} `));
+        }
+
+
+    
+        if (address === "") {
+          document.getElementById("addressError").innerHTML = "Address is required";
+        } else if (address.length < 20) {
+        
+          document.getElementById("addressError").innerHTML = "Address should be at least 20 characters long";
+        }else{
+            div.appendChild(document.createTextNode(` Address : ${address} `));
+        }
+
+       
+        if (password === "") {
+          document.getElementById("passwordError").innerHTML = "Password is required";
+        } else if (password.length < 8) {
+          
+          document.getElementById("passwordError").innerHTML = "Password should be at least 8 characters long";
+        }else{
+            div.appendChild(document.createTextNode(` Password : ${password} `));
+        }
+  
+      }
+    </script>
+  </body>
+</html>

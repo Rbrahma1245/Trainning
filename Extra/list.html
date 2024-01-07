@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ol >
+        <li>Apple</li>
+        <li>Orange</li>
+        <li>Mango</li>
+        <li>Grapes</li>
+        <li>Kiwi</li>
+    </ol>
+    
+    <script>
+        
+    
+        let ul = document.createElement("ul")   
+        let cars =["Alto", "Swift", "Nexon", "Baleno"]
+      
+        cars.forEach(function(e,i){
+            let li = document.createElement("li")
+            li.appendChild(document.createTextNode(e))
+            ul.appendChild(li)
+        })
+        document.body.appendChild(ul)
+        console.log(ul)
+
+   
+        ul.addEventListener("click", function(event){
+            event.target.innerText = "Clicked"
+        } )
+
+        
+    </script>
+
+</body>
+</html>

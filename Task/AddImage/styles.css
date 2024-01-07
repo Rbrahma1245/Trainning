@@ -1,0 +1,82 @@
+.my-paragraph {
+  color: #8a124a;
+  font-size: 16px;
+}
+.my-paragraph:hover {
+  text-decoration: underline;
+}
+
+#images img {
+  width: 200px;
+  height: 100px;
+  padding: 12px;
+}
+
+.add {
+  border: 1px solid green;
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #654FC6;
+}
+
+.add:hover {
+  background-color: #24136f;
+  color: rgb(241, 234, 234);
+  cursor: pointer;
+}
+
+.displayImg {
+  width: 50px;
+  height: 30px;
+  border: none;
+}
+
+img {
+  border: 1px solid black;
+  height: 100px;
+}
+
+.aaa {
+  margin-left: 20px;
+}
+
+#error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.dynamicDiv {
+  border: 1px solid black;
+  height: 100px;
+}
+
+/* span text */
+.spanText {
+  margin-left: 10px;
+}
+
+/* REMOVE ICON DELETE ICON */
+.iconDiv {
+  width: 65px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fa-solid {
+  width: 35px;
+  padding: 5px;
+  height: 30px;
+}
+
+.fa-download:hover {
+  cursor: pointer;
+  background-color: #4183e0;
+}
+
+.fa-trash-can:hover {
+  cursor: pointer;
+  background-color: #a82222;
+}/*# sourceMappingURL=styles.css.map */

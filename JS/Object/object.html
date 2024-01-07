@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // // 1st method
+      // let obj = {}
+      // obj.name = "abc"
+      // console.log(obj)
+
+      // //2nd Method by creating instances
+      // let student = new Object()
+      // student.name = "Mike"
+      // console.log(student)
+
+      //3rd Method by using constructor method
+
+      function StudentDetails() {
+        this.name = "MIKE";
+        this.age = 22;
+      }
+
+      let student = new StudentDetails();
+      console.log(student);
+    </script>
+  </body>
+</html>

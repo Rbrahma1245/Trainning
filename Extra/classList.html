@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLASSLIST</title>
+    <style>
+      .highlight {
+        background-color: yellow;
+      }
+      .red {
+        color: red;
+      }
+
+      .oldClass {
+        color: red;
+      }
+
+      .newClass {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="myElement">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, quas.
+      Ipsam amet distinctio perferendis, laudantium quo vel aperiam beatae
+      corporis?
+    </div>
+    <button onclick="handleClick()">Click to toggle</button>
+
+    <!-- for replace method -->
+
+    <!-- <div id="myElement" class="oldClass abc def">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
+        quas. Ipsam amet distinctio perferendis, laudantium quo vel aperiam beatae corporis?
+   </div>
+   <button onclick="handleClick()">Click to toggle</button> -->
+
+    <script>
+      let element = document.getElementById("myElement");
+
+      function handleClick() {
+        // element.classList.toggle("highlight");
+        // element.classList.add("red")
+        // element.classList.remove("red")
+        // element.classList.replace("oldClass", "newClass");
+
+        // Get the class at index 1 (zero-based index)
+        let secondClass = classList.item(1);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div {
+        display: flex;
+      }
+      .card {
+        border: 1px solid red;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div"></div>
+
+    <script>
+      const apiUrl = "https://reqres.in/api/users";
+
+      async function fetchData(url) {
+        return fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP Error : ${response.status}`);
+            } else {
+              return response.json();
+            }
+          })
+          .catch((error) => {
+            throw new Error(error.message);
+          });
+      }
+
+      let str = "";
+
+      async function displayResult(data) {
+        let div = document.getElementById("div");
+
+        data.forEach((elem, i) => {
+          console.log(elem);
+          let { first_name, last_name, email, avatar } = elem;
+          str =
+            str +
+            `<div class="card" >
+                <img src=${avatar}></img>
+                 <p><b>First Name:</b> ${first_name}</p>
+                <p><b>Last Name:</b> ${last_name}</p>
+                <p><b>Email:</b> ${email}</p>
+             </div>`;
+        });
+
+        div.innerHTML = str;
+      }
+
+      async function display() {
+        await fetchData(apiUrl)
+          .then((data) => {
+            displayResult(data.data);
+            //   console.log("Data : ", data);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      }
+
+      display();
+    </script>
+  </body>
+</html>

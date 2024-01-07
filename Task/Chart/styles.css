@@ -1,0 +1,12 @@
+.my-paragraph {
+  color: #8a124a;
+  font-size: 16px;
+}
+.my-paragraph:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 500px;
+  height: 500px;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <table border="2">
+        <p>Course list for <strong>students</strong></p>
+        <thead>
+            <th>Sl No.</th>
+            <th>Name</th>
+            <th>Language</th>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>Raju</td>
+            <td>Javascript</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Mike</td>
+            <td>React</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Arun</td>
+            <td>Python</td>
+        </tr>
+        
+
+    </table> -->
+    
+
+
+    <script>
+
+        let studentDetails = [
+            {sNo: 1, name: "Mike", course:"java"},
+            {sNo: 2, name: "Arun", course:"python"},
+            {sNo: 3, name: "Raju", course:"javascript"}
+        ]
+
+        let headerDetails = ["sl", "Name", "Course"]
+
+        let table = document.createElement("table") 
+        let tHead = document.createElement("thead")
+        let tBody = document.createElement("tbody")
+     
+       
+        headerDetails.forEach(function(e,i){
+            let th = document.createElement("th")
+            th.appendChild(document.createTextNode(e))
+            tHead.appendChild(th)
+        })
+      console.log(tHead)
+    
+      
+      studentDetails.forEach(function(e,i){
+        let tr = document.createElement("tr")
+      
+
+        let tdSNo = document.createElement("td");
+        tdSNo.appendChild(document.createTextNode(e.sNo));
+        tr.appendChild(tdSNo);
+
+       
+        let tdName = document.createElement("td");
+        tdName.appendChild(document.createTextNode(e.name));
+        tr.appendChild(tdName);
+
+       
+        let tdCourse = document.createElement("td");
+        tdCourse.appendChild(document.createTextNode(e.course));
+        tr.appendChild(tdCourse);
+        console.log(tr)
+        tBody.appendChild(tr)
+
+      })
+     
+
+      table.appendChild(tHead)
+      table.appendChild(tBody)
+
+      console.log(table)
+      table.setAttribute("border", 2)
+      document.body.appendChild(table)
+   
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="1">
+        <button id="parentbtn">Parent</button>
+        <div id="2">
+            <button id="3">Click</button>
+        </div>
+    </div>
+
+    <script>
+        let id1 = document.getElementById("1")
+   
+        id1.addEventListener("click", function(event){        
+            console.log("Click on", event.target.id);
+        },false)
+        
+    </script>
+</body>
+</html>

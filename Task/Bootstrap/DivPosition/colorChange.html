@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div"></div>
+
+    <button onclick="handleClick()">START</button>
+
+    <script>
+      let div = document.getElementById("div");
+
+      
+      function randomElement() {
+        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
+        return arr[Math.trunc(arr.length * Math.random())];
+      }
+
+      function randomColor() {
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += randomElement();
+        }
+        return color;
+      }
+
+      function randomShape() {
+        const random = Math.random();
+        if (random < 0.2) {
+          changeToCircle();
+        } else if (random < 0.4) {
+          changeToRectangle();
+        } else if (random < 0.6) {
+          changeToPolygon();
+        } else if (random < 0.8) {
+          changeToStar();
+        } else {
+          changeToEllipse();
+        }
+
+        function changeToCircle() {
+          div.style.borderRadius = "50%";
+          div.style.clipPath = "initial";
+        }
+
+        function changeToRectangle() {
+          div.style.borderRadius = "0";
+          div.style.clipPath = "initial";
+        }
+
+        function changeToPolygon() {
+          div.style.clipPath =
+            "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
+        }
+
+        function changeToStar() {
+          div.style.clipPath =
+            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)";
+        }
+
+        function changeToEllipse() {
+          div.style.borderRadius = "50% / 50%";
+          div.style.clipPath = "initial";
+        }
+      }
+
+      function handleClick() {
+        setInterval(() => {
+          let deg = Math.trunc(Math.random() * 360);
+          let gradient = `linear-gradient(${deg}deg, ${randomColor()},${randomColor()},${randomColor()} )`;
+          randomShape();
+          div.style.background = gradient;
+
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callback</title>
+  </head>
+  <body>
+    <script>
+      //   function print(name, callback) {
+      //     console.log("before calling");
+      //     setTimeout(() => {
+      //       callback(name);
+      //     }, 2000);
+      //     console.log("after call");
+      //   }
+
+      //   function sayMyName(name) {
+      //     console.log(`My name is ${name}`);
+      //   }
+      //   print("Mike", sayMyName);
+
+      //2)) PRINT ARRAY
+
+      // function print(arr, callback) {
+      //   console.log("Before callback");
+
+      //   setTimeout(() => {
+      //     arr.forEach(function (elem, index) {
+      //       callback(elem, index);
+      //     });
+      //   }, 3000);
+
+      //   console.log("After callback");
+      // }
+
+      // function printArr(elem, index) {
+      //   console.log(`Element at index ${index}: ${elem}`);
+      // }
+
+      // let arr = [1, 2, 5, 44, 55];
+      // print(arr, printArr);
+
+      //NESTED CALLBACK
+
+      function print(name, callback) {
+        console.log("before calling");
+        setTimeout(() => {
+          console.log("1st setTimeout");
+          callback(name);
+
+          setTimeout(() => {
+            console.log("2nd setTimeout");
+            callback(name);
+          }, 1000);
+        }, 2000);
+        console.log("after call");
+      }
+
+      function sayMyName(name) {
+        console.log(`My name is ${name}`);
+      }
+      print("Mike", sayMyName);
+    </script>
+  </body>
+</html>

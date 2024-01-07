@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="handleClick(print)">CLICK</button>
+
+    <p id="p"></p>
+    
+
+    <script>
+        let p = document.getElementById("p")
+
+        function print(value){
+            console.log(value)
+            p.innerText = value
+        }
+
+        function handleClick(callback){
+            setTimeout(()=>{
+                callback("you clicked the button")
+            },2000)
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+// styles.scss
+
+$primary-color: #8a124a;
+$secondary-color: rgb(241, 234, 234);
+
+
+$background-color: #654FC6;
+$background-color-hover: #24136f;
+
+
+.my-paragraph {
+  color: $primary-color;
+  font-size: 16px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+#images{
+    img{
+        width: 200px;
+        height: 100px;
+        padding: 12px;
+        // margin-left: 50px;
+    }
+}
+.add {
+    border: 1px solid green;
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $background-color;
+  }
+  .add:hover {
+    background-color: $background-color-hover;
+     color: $secondary-color; 
+     cursor: pointer;
+  }
+
+  .displayImg {
+    width: 50px;
+    height: 30px;
+    border: none;
+  }
+
+
+
+  img {
+    border: 1px solid black;
+    height: 100px;
+  }
+
+  .aaa {
+    margin-left: 20px;
+  }
+  #error-message {
+    color: red;
+    font-size: 14px;
+  }
+  .dynamicDiv {
+    border: 1px solid black;
+    height: 100px;
+  }
+
+  /* span text */
+  .spanText {
+    margin-left: 10px;
+  }
+
+  /* REMOVE ICON DELETE ICON */
+
+  .iconDiv {
+    width: 65px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .fa-solid {
+    width: 35px;
+    padding: 5px;
+    height: 30px;
+  }
+  .fa-download:hover {
+    cursor: pointer;
+    background-color: #4183e0;
+  }
+  .fa-trash-can:hover {
+    cursor: pointer;
+    background-color: #a82222;
+  }

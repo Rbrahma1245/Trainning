@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>GeoLocation example</h1>
+
+      <button type="button" onclick="geoLoc()">Get Location</button>
+    </div>
+
+    <script>
+      let container = document.getElementById("container");
+      let pos = navigator.geolocation;
+
+      function geoLoc() {
+        if (pos) pos.getCurrentPosition(getLoc);
+        else{
+          container.innerHTML = "Your browser does " + "not support the Geolocation API."
+        }
+      }
+
+      function getLoc(loc) {
+        container.innerHTML =
+          "Latitude: " +
+          loc.coords.latitude +
+          "<br>Longitude: " +
+          loc.coords.longitude;
+      }
+    </script>
+  </body>
+</html>

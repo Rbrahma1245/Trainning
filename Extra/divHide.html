@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        let div = document.createElement("div")
+        let btn = document.createElement("button")     
+        div.innerText = "hello"
+        btn.innerText = "CLICK"
+
+        let p = document.createElement("p")
+
+        div.style.border = "5px solid red" 
+        div.style.width = "500px"
+        div.style.height = "400px"
+
+
+        document.body.appendChild(div)
+        document.body.appendChild(btn)
+
+        btn.addEventListener("click", function(){
+            let getWidth = div.offsetWidth
+            let getHeight = div.offsetHeight
+
+             p.innerText = `The width id ${getWidth} and height is ${getHeight}`
+
+            document.body.appendChild(p)
+         
+        })
+        console.log(window.innerHeight, window.innerWidth)
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+          let carList = [
+            {name: "swift", company:"Maruti", cc: 1199},
+            {name: "Alto", company:"Maruti", cc: 800},
+            { name: "Safari", company:"Tata", cc: 1499}
+        ]
+
+        let carList1 = [
+            {name: "scorpio", company:"Mahindra", cc: 1999},
+            {name: "Seltos", company:"KIA", cc: 1499},
+            { name: "Endeavour", company:"Ford", cc: 2199}
+        ]
+
+        let carHeaderName = ["Name", "Company", "CC"]
+
+
+        let table= document.createElement("table")
+        let tHead = document.createElement("thead")
+        let tBody = document.createElement("tbody")
+
+        carHeaderName.forEach(function(e,i){
+            let th = document.createElement("th")
+            th.appendChild(document.createTextNode(e))
+            tHead.appendChild(th)        
+        })
+
+
+        function addCarList(e,i){
+            let tr = document.createElement("tr")
+
+            let carNameList = document.createElement("td")
+            carNameList.appendChild(document.createTextNode(e.name))
+            tr.appendChild(carNameList)
+
+            let carCompanyList = document.createElement("td")
+            carCompanyList.appendChild(document.createTextNode(e.company))
+            tr.appendChild(carCompanyList)
+
+            let carCCList = document.createElement("td")
+            carCCList.appendChild(document.createTextNode(e.cc))
+            tr.appendChild(carCCList)
+
+            tBody.appendChild(tr)
+
+        }
+
+        carList.forEach(function(e,i){
+            addCarList(e,i)        
+        })
+
+
+        carList1.forEach(function(e,i){
+            addCarList(e,i)
+        })
+
+        table.appendChild(tHead)
+        table.appendChild(tBody)
+
+        table.setAttribute("border", 1)
+
+        document.body.appendChild(table)
+        
+
+        
+
+        // FOR SELECT BOX
+
+        let select= document.createElement("select")
+        
+        function carName(e,i){
+            let option= document.createElement("option")
+            option.appendChild(document.createTextNode(e.name))
+            select.appendChild(option)
+        }
+        carList.forEach(function(e,i){
+            carName(e,i)
+
+        })
+
+        carList1.forEach(function(e,i){
+            carName(e,i)
+        })
+
+
+        document.body.appendChild(select)
+
+
+
+    </script>
+</body>
+</html>

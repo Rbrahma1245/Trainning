@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let book1 = new Books("book1", "author1", 1995)
+        let book2 = new Books("book2", "author2", 2000)
+        let book3 = new Books("book3", "author3", 2013)
+
+        let addBook1 = new Books("book4", "author4", 2023)
+
+        let library = {
+        name: "Central Library",
+        location: "Bangalore",
+        books : [book1, book2, book3],
+        addBook: function(){
+            return this.books.push(addBook1)
+        },
+        listBook: function(){
+            return this.books   
+        }
+        }
+
+        function Books(title,author,publishYear){
+        this.title = title
+        this.author = author
+        this.publishYear = publishYear
+        }
+
+
+        console.log(library.addBook())
+        console.log(library.listBook())
+
+
+    </script>
+    
+</body>
+</html>

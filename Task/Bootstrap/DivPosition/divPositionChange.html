@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div" ></div>
+    <button onclick="handleClick()">START</button>
+
+    <script>
+      let div = document.getElementById("div");
+
+      function randomElement() {
+        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
+        return arr[Math.trunc(arr.length * Math.random())];
+      }
+
+      function randomColor() {
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += randomElement();
+        }
+        return color;
+      }
+
+      function randomPosition() {
+        let width = document.body.offsetWidth;
+        let height = document.body.offsetHeight;
+        let randomWidth = Math.trunc(Math.random() * width);
+        let randomHeight = Math.trunc(Math.random() * height);
+
+        console.log(randomWidth);
+        console.log(randomHeight);
+
+   
+        div.style.top  = `${randomWidth/2}px`
+        div.style.left = `${randomHeight/2}px`
+      }
+
+      function handleClick() {
+        setInterval(() => {
+          let deg = Math.trunc(Math.random() * 360);
+          let gradient = `linear-gradient(${deg}deg, ${randomColor()}, ${randomColor()} )`;
+          randomPosition();
+          div.style.background = gradient;
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

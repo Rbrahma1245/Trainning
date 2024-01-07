@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="search" type="text" placeholder="Enter youtube url" />
+    <button onclick="handleClick()">Search</button>
+
+    <div id="displayVideo"></div>
+
+    <!-- <iframe src="https://www.youtube.com/watch?v=NySBh_DIRlg&list=PLc1g3vwxhg1WOgHSDWWUFljioMJxepLX4&ab_channel=ChartJS"></iframe> -->
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/NySBh_DIRlg?si=7UiE3FT699wqrcN4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+  
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/9p_t6L4gHGc?si=ZpxQQPUep_vnoMlC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+
+    <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
+
+    <script>
+      let search = document.getElementById("search");
+      let displayVideo = document.getElementById("displayVideo");
+      let iframe = document.createElement("iframe");
+
+      function handleClick() {
+        // validateYouTubeUrl(youtubeUrl)
+        let youtubeRegex =
+          /^(https?:\/\/)?(www\.)?(youtube\.com\/(embed\/|v\/|watch\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+        if (youtubeRegex.test(search.value)) {
+
+          console.log("The YouTube URL is valid.");
+          iframe.setAttribute("src", search.value);
+          iframe.setAttribute("title", "Iframe Example");
+
+          displayVideo.appendChild(iframe);
+        } else {
+          console.log(
+            "Invalid YouTube URL. Please enter a valid YouTube video URL."
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

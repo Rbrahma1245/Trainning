@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn"> START</button>
+    <p id="displayText"></p>
+
+    <button id="btnTest" onchange="handleClick()"> Button 2</button>
+    
+    <script>
+        let btn = document.getElementById("btn")
+        let btnTest = document.getElementById("btnTest")
+        let displayText = document.getElementById("displayText")
+
+        let timerId ;
+
+        btn.addEventListener("click", function(){
+            if(timerId){
+                clearInterval(timerId)
+                btn.innerText= "START"
+                timerId=0
+
+            }else{      
+                let i=0            
+                btn.innerText = "STOP" 
+                timerId =  setInterval(() => {
+                    displayText.innerText = i++                   
+                }, 200);   
+                
+                console.log(timerId)
+            }      
+        })
+
+
+
+
+        //REFERENCE WITH
+        btnTest.onclick = print
+        function print(){
+            console.log("You click")
+        }
+        
+
+    </script>
+</body>
+</html>

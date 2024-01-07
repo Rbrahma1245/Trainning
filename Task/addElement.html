@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="div" onclick="handleClick(event)">
+      <p id="p1">Hello this is paragraph tag</p>
+      <h4 id="h4">Hello this is paragraph tag</h4>
+      <span id="span">Hello this is paragraph tag</span>
+      <br />
+      <button id="btn">Click</button>
+      <br />
+      <br />
+      <input
+        id="name"
+        name="inputField"
+        type="text"
+        placeholder="Enter id no. to delete an element"
+      />
+      <button onclick="handleSubmit()">Submit</button>
+    </div>
+
+    <script>
+      function addNewNode(p, text, name) {
+        div.appendChild(p);
+        p.innerText = text;
+        p.setAttribute("id", name);
+      }
+
+      function handleClick(e){
+        console.log(e.target.id);
+      }
+
+      function handleSubmit() {
+        let div = document.getElementById("div");
+        let inputField = document.getElementById("name");
+        let arr = Array.from(div.children);
+
+        let idList = [];
+
+        arr.forEach(function (elem, index) {
+          if (elem.id !== "") {
+            idList.push(elem.id);
+          }
+        });
+
+        let name = inputField.value;
+        let elementFound = false;
+
+        if (name == "") {
+          alert("input box should not be empty string");
+        }
+
+        idList.forEach(function (elem, i) {
+          if (name == elem) {
+            const element = document.getElementById(elem);
+            element.remove();
+            elementFound = true;
+          }
+        });
+
+        if (!elementFound) {
+          let addNewElem = confirm("Do you want to add new Field ?");
+          let inputText = document.createElement("input");
+
+          if (addNewElem) {
+            let optList = ["Select any tag", "h4", "span", "p", "button"];
+
+            let select = document.createElement("select");
+            select.id = "mySelect";
+            document.body.appendChild(select);
+
+            optList.forEach(function (e, i) {
+              let option = document.createElement("option");
+              if (i == 0) {
+                option.setAttribute("disabled", "");
+                option.setAttribute("selected", "");
+              }
+              option.value = e;
+              option.text = e;
+              select.appendChild(option);
+            });
+
+            select.addEventListener("change", function handleSelectChange() {
+              let selectedOption = select.value;
+              console.log(selectedOption);
+
+              let p = document.createElement("p");
+              let h4 = document.createElement("h4");
+              let span = document.createElement("span");
+              let button = document.createElement("button");
+
+              switch (selectedOption) {
+                case "p":
+                  addNewNode(p, "Newly added paragraph tag", name);
+                  select.remove();
+                  break;
+                case "h4":
+                  addNewNode(h4, "Newly added Header tag", name);
+                  select.remove();
+                  break;
+                case "span":
+                  addNewNode(span, "Newly added Span tag", name);
+                  select.remove();
+                  break;
+                case "button":
+                  addNewNode(button, "CLICK ME", name);
+                  select.remove();
+                  break;
+                default:
+                  console.log("Invalid option selected");
+                  return;
+              }
+            });
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://images.unsplash.com/photo-1683009427540-c5bd6a32abf6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    
+
+    <script>
+        let img = document.getElementsByTagName("img")[0]
+
+        img.addEventListener("click", function(){
+            img.style.border = "20px solid red"
+        })
+        img.addEventListener("mouseout" ,function(){
+            img.style.border = "none"
+            
+        })
+
+        console.log(img)
+    </script>
+</body>
+</html>
